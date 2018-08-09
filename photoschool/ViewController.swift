@@ -32,6 +32,8 @@ class ViewController: UIViewController {
         if let jsonData = try? JSONSerialization.data(withJSONObject: json) {
             var request = URLRequest(url: URL(string: "https://highiso.photo/user_token")!)
             request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data, error == nil else {
