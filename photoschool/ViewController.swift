@@ -7,33 +7,49 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class ViewController: UIViewController {
-    @IBOutlet var emailField: UITextField!
-    @IBOutlet var passwordField: UITextField!
-    @IBAction func logInTouch(_ sender: UIButton) {
+    @IBOutlet private var emailField: UITextField!
+    @IBOutlet private var passwordField: UITextField!
+    @IBAction private func logInTouch(_ sender: UIButton) {
         if let email = emailField.text, let pass = passwordField.text {
             sendAuthData(email: email, pass: pass)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     struct Auth: Codable {
         var user: User
         var auth_token: AuthToken
     }
+    
     struct User: Codable {
         var email: String
     }
+    
     struct AuthToken: Codable {
         var payload: Payload
         var token: String
     }
+    
     struct Payload: Codable {
         var exp: Int
         var sub: Int
     }
+    
+    struct JSONPayload: Codable {
+        var auth: AuthPayload
+    }
+    
+    struct AuthPayload: Codable {
+        var email: String
+        var password: String
+    }
+    
     private func sendAuthData(email: String, pass: String){
         let json: [String: Any] = [
             "auth": [
@@ -44,6 +60,7 @@ class ViewController: UIViewController {
         guard let jsonData = try? JSONSerialization.data(withJSONObject: json) else {
             return
         }
+        
         var request = URLRequest(url: URL(string: "https://highiso.photo/user_token")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -54,7 +71,10 @@ class ViewController: UIViewController {
                 print(error?.localizedDescription ?? "No data")
                 return
             }
-            print(data)
+            let decoder = JSONDecoder()
+            let result = try! decoder.decode(Auth.self, from: data)
+            let keychain = KeychainSwift()
+            keychain.set(result.auth_token.token, forKey: "token")
         }
         task.resume()
     }
