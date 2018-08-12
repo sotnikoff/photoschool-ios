@@ -51,13 +51,9 @@ class ViewController: UIViewController {
     }
     
     private func sendAuthData(email: String, pass: String){
-        let json: [String: Any] = [
-            "auth": [
-                "email": email,
-                "password": pass
-            ]
-        ]
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: json) else {
+        
+        let JSONObject = JSONPayload(auth: AuthPayload(email: email, password: pass))
+        guard let encodedJSONObject = try? JSONEncoder().encode(JSONObject) else {
             return
         }
         
@@ -65,7 +61,7 @@ class ViewController: UIViewController {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
+        request.httpBody = encodedJSONObject
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 print(error?.localizedDescription ?? "No data")
@@ -74,6 +70,7 @@ class ViewController: UIViewController {
             let decoder = JSONDecoder()
             let result = try! decoder.decode(Auth.self, from: data)
             let keychain = KeychainSwift()
+            print(result.auth_token.token)
             keychain.set(result.auth_token.token, forKey: "token")
         }
         task.resume()
