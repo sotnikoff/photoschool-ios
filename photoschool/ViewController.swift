@@ -72,6 +72,9 @@ class ViewController: UIViewController {
             let keychain = KeychainSwift()
             print(result.auth_token.token)
             keychain.set(result.auth_token.token, forKey: "token")
+            DispatchQueue.main.async {
+               self.performSegue(withIdentifier: "AuthSegue", sender: self)
+            }
         }
         task.resume()
     }
