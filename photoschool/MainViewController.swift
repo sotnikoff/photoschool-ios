@@ -12,7 +12,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet var tableView: UITableView!
     
-    var test: [String] = ["1","2","3","4"]
+    var tableData = [FailableDecodable<Course>]()
     
     struct Course: Codable {
         var id: Int
@@ -34,12 +34,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test.count
+        return tableData.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath)
-        cell.textLabel?.text = test[indexPath.row]
+        cell.textLabel?.text = tableData[indexPath.row].base?.title
         return cell
     }
 
@@ -57,7 +57,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             let decoder = JSONDecoder()
             let courses = try! decoder.decode([FailableDecodable<Course>].self, from: data)
-            print(courses)
+            self.tableData = courses
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         task.resume()
     }
