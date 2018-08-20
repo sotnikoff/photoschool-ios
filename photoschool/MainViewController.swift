@@ -8,7 +8,11 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet var tableView: UITableView!
+    
+    var test: [String] = ["1","2","3","4"]
     
     struct Course: Codable {
         var id: Int
@@ -28,9 +32,20 @@ class MainViewController: UIViewController {
             self.base = try? container.decode(Base.self)
         }
     }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return test.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath)
+        cell.textLabel?.text = test[indexPath.row]
+        return cell
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         var request = URLRequest(url: URL(string: "https://highiso.photo/api/courses")!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -45,11 +60,6 @@ class MainViewController: UIViewController {
             print(courses)
         }
         task.resume()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
