@@ -10,12 +10,59 @@ import UIKit
 
 class CourseViewController: UIViewController {
     
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
+    
     var courseID: Int = 0
+    
+    struct Course: Codable {
+        var id: Int
+        var title: String
+        var description: String
+        var text: String
+        var image: String
+        var featured: Bool
+        var created_at: String
+        var updated_at: String
+    }
+    
+    struct Task: Codable {
+        var id: Int
+        var course_id: Int
+        var title: String
+        var description: String
+        var allowed: Bool
+        var created_at: String
+        var updated_at: String
+    }
+    
+    struct CourseData: Codable {
+        var course: Course
+        var tasks: [Task]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(self.courseID)
-        // Do any additional setup after loading the view.
+        
+        var request = URLRequest(url: URL(string: "https://highiso.photo/api/courses/"+String(self.courseID))!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let decoder = JSONDecoder()
+            let course = try! decoder.decode(CourseData.self, from: data)
+            print(course)
+            DispatchQueue.main.async {
+                self.titleLabel.text? = course.course.title
+                self.descriptionLabel.text? = course.course.description
+            }
+        }
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
