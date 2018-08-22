@@ -9,10 +9,12 @@
 import UIKit
 
 class CourseViewController: UIViewController {
-
+    
+    var courseID: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(self.courseID)
         // Do any additional setup after loading the view.
     }
 
