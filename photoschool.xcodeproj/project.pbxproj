@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4EC275372121834A00EAF90C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC275362121834A00EAF90C /* MainViewController.swift */; };
+		4EC2753B212D52BB00EAF90C /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2753A212D52BB00EAF90C /* CourseViewController.swift */; };
 		4ECBFC81211C279F00DB00A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBFC80211C279F00DB00A6 /* AppDelegate.swift */; };
 		4ECBFC83211C279F00DB00A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBFC82211C279F00DB00A6 /* ViewController.swift */; };
 		4ECBFC86211C279F00DB00A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBFC84211C279F00DB00A6 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		1C467985A5488D69DB5C308A /* Pods-photoschool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photoschool.release.xcconfig"; path = "Pods/Target Support Files/Pods-photoschool/Pods-photoschool.release.xcconfig"; sourceTree = "<group>"; };
 		2E0CAC00CF523AE2B85D5CC7 /* Pods_photoschool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photoschool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC275362121834A00EAF90C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4EC2753A212D52BB00EAF90C /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		4ECBFC7D211C279F00DB00A6 /* photoschool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoschool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ECBFC80211C279F00DB00A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ECBFC82211C279F00DB00A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				4ECBFC87211C27A000DB00A6 /* Assets.xcassets */,
 				4ECBFC89211C27A000DB00A6 /* LaunchScreen.storyboard */,
 				4ECBFC8C211C27A000DB00A6 /* Info.plist */,
+				4EC2753A212D52BB00EAF90C /* CourseViewController.swift */,
 			);
 			path = photoschool;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC275372121834A00EAF90C /* MainViewController.swift in Sources */,
+				4EC2753B212D52BB00EAF90C /* CourseViewController.swift in Sources */,
 				4ECBFC83211C279F00DB00A6 /* ViewController.swift in Sources */,
 				4ECBFC81211C279F00DB00A6 /* AppDelegate.swift in Sources */,
 			);
