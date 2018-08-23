@@ -12,6 +12,7 @@ class CourseViewController: UIViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     var courseID: Int = 0
     
@@ -60,6 +61,13 @@ class CourseViewController: UIViewController {
             DispatchQueue.main.async {
                 self.titleLabel.text? = course.course.title
                 self.descriptionLabel.text? = course.course.description
+            }
+            let url = URL(string: course.course.image)
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: data!)
+                }
             }
         }
         task.resume()
