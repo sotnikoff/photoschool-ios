@@ -67,6 +67,7 @@ class CourseViewController: UIViewController {
                 let data = try? Data(contentsOf: url!)
                 DispatchQueue.main.async {
                     self.imageView.image = UIImage(data: data!)
+                    self.imageView.contentMode = UIViewContentMode.scaleAspectFill
                 }
             }
         }
