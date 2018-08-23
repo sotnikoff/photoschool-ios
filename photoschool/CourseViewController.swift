@@ -12,7 +12,7 @@ class CourseViewController: UIViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private var imageView: UIImageView!
     
     var courseID: Int = 0
     
