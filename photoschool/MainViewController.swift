@@ -10,6 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var courseID: Int = 0
     @IBOutlet var tableView: UITableView!
     
     var tableData = [FailableDecodable<Course>]()
@@ -41,6 +42,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath)
         cell.textLabel?.text = tableData[indexPath.row].base?.title
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.courseID = (tableData[indexPath.row].base?.id)!
+        self.performSegue(withIdentifier: "CourseViewSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CourseViewSegue" {
+            guard let destinationVC = segue.destination as? CourseViewController else {
+                return
+            }
+            destinationVC.courseID = self.courseID
+        }
     }
 
     override func viewDidLoad() {
