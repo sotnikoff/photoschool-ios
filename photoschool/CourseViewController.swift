@@ -15,7 +15,7 @@ class CourseViewController: UIViewController {
     @IBOutlet private var imageView: UIImageView!
     
     var courseID: Int = 0
-    
+        
     struct Course: Codable {
         var id: Int
         var title: String
@@ -44,25 +44,14 @@ class CourseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.courseID)
         
-        var request = URLRequest(url: URL(string: "https://highiso.photo/api/courses/"+String(self.courseID))!)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let decoder = JSONDecoder()
-            let course = try! decoder.decode(CourseData.self, from: data)
-            print(course)
+        CourseModel.find(id: self.courseID, callback: { course in
+            print(course.id)
             DispatchQueue.main.async {
-                self.titleLabel.text? = course.course.title
-                self.descriptionLabel.text? = course.course.description
+                self.titleLabel.text? = course.title
+                self.descriptionLabel.text? = course.description
             }
-            let url = URL(string: course.course.image)
+            let url = URL(string: course.image)
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!)
                 DispatchQueue.main.async {
@@ -70,8 +59,7 @@ class CourseViewController: UIViewController {
                     self.imageView.contentMode = UIViewContentMode.scaleAspectFill
                 }
             }
-        }
-        task.resume()
+        })
     }
 
     override func didReceiveMemoryWarning() {

@@ -14,6 +14,8 @@
 		4ECBFC86211C279F00DB00A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBFC84211C279F00DB00A6 /* Main.storyboard */; };
 		4ECBFC88211C27A000DB00A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBFC87211C27A000DB00A6 /* Assets.xcassets */; };
 		4ECBFC8B211C27A000DB00A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBFC89211C27A000DB00A6 /* LaunchScreen.storyboard */; };
+		4EE0C6C4213EA3EE0069C480 /* GetRequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE0C6C3213EA3EE0069C480 /* GetRequestPerformer.swift */; };
+		4EF752522139A1C30060DC86 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF752512139A1C30060DC86 /* CourseModel.swift */; };
 		8955B26422BF139A2138FE5D /* Pods_photoschool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0CAC00CF523AE2B85D5CC7 /* Pods_photoschool.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +31,8 @@
 		4ECBFC87211C27A000DB00A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ECBFC8A211C27A000DB00A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ECBFC8C211C27A000DB00A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EE0C6C3213EA3EE0069C480 /* GetRequestPerformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRequestPerformer.swift; sourceTree = "<group>"; };
+		4EF752512139A1C30060DC86 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		CCF3F32CDB8A00FB7A9449EE /* Pods-photoschool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photoschool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-photoschool/Pods-photoschool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +78,8 @@
 		4ECBFC7F211C279F00DB00A6 /* photoschool */ = {
 			isa = PBXGroup;
 			children = (
+				4EE0C6C1213EA3940069C480 /* services */,
+				4EF752502139A19A0060DC86 /* Models */,
 				4ECBFC80211C279F00DB00A6 /* AppDelegate.swift */,
 				4ECBFC82211C279F00DB00A6 /* ViewController.swift */,
 				4ECBFC84211C279F00DB00A6 /* Main.storyboard */,
@@ -84,6 +90,30 @@
 				4EC2753A212D52BB00EAF90C /* CourseViewController.swift */,
 			);
 			path = photoschool;
+			sourceTree = "<group>";
+		};
+		4EE0C6C1213EA3940069C480 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				4EE0C6C2213EA3A10069C480 /* net */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		4EE0C6C2213EA3A10069C480 /* net */ = {
+			isa = PBXGroup;
+			children = (
+				4EE0C6C3213EA3EE0069C480 /* GetRequestPerformer.swift */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		4EF752502139A19A0060DC86 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4EF752512139A1C30060DC86 /* CourseModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D57C2EA4B4A31E9B294EA534 /* Frameworks */ = {
@@ -209,7 +239,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC275372121834A00EAF90C /* MainViewController.swift in Sources */,
+				4EE0C6C4213EA3EE0069C480 /* GetRequestPerformer.swift in Sources */,
 				4EC2753B212D52BB00EAF90C /* CourseViewController.swift in Sources */,
+				4EF752522139A1C30060DC86 /* CourseModel.swift in Sources */,
 				4ECBFC83211C279F00DB00A6 /* ViewController.swift in Sources */,
 				4ECBFC81211C279F00DB00A6 /* AppDelegate.swift in Sources */,
 			);

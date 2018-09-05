@@ -12,7 +12,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var courseID: Int = 0
     @IBOutlet var tableView: UITableView!
-    
     var tableData = [FailableDecodable<Course>]()
     
     struct Course: Codable {
